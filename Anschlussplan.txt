@@ -1,0 +1,14 @@
+
+LED
+5V -> +
+GND -> -
+8 -> Vin (Steuerleitung)
+
+Taster
+2 -> PinInput (5V)
+
+RTC
+3,3V -> +
+GND -> -
+SDA -> A4
+SCL -> A5
