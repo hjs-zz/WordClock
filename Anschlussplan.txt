@@ -1,14 +1,46 @@
+WordClock - Anschlussplan
+========================
 
-LED
-5V -> +
-GND -> -
-8 -> Vin (Steuerleitung)
+Stromversorgung
+---------------
+- Geregeltes 5-V-Netzteil mit mindestens 3 A bei LED_BRIGHTNESS = 64 verwenden.
+- LED-Strom nicht über den Arduino oder einen GPIO-Pin führen.
+- Netzteil-GND, Arduino-GND, LED-GND und RTC-GND miteinander verbinden.
+- 5 V und GND sternförmig am Anfang sowie in der Mitte oder am Ende der
+  LED-Kette einspeisen.
+- Den LED-Zweig passend zu Netzteil und Leitungsquerschnitt absichern.
+- Arduino über einen eigenen Zweig derselben Versorgung speisen, vorzugsweise
+  über den USB-Eingang. Beim Programmieren keine zwei 5-V-Quellen verbinden.
+
+NeoPixel-LEDs
+-------------
+Netzteil 5 V  -> LED +5V (mehrere Einspeisepunkte)
+Netzteil GND  -> LED GND
+Arduino D8    -> 330-470 Ohm -> DIN der ersten LED
+
+Direkt am ersten LED-Einspeisepunkt einen Elektrolytkondensator mit
+1000 uF / mindestens 6,3 V zwischen +5 V und GND einsetzen. Polarität beachten.
 
 Taster
-2 -> PinInput (5V)
+------
+Arduino D2 -> Taster -> GND
 
-RTC
-3,3V -> +
-GND -> -
-SDA -> A4
-SCL -> A5
+Der Sketch verwendet INPUT_PULLUP. Der Taster wird daher nicht mit 5 V
+verbunden. Optional kann ein 100-nF-Kondensator zwischen D2 und GND ergänzt
+werden.
+
+DS3231 RTC
+----------
+Arduino 3,3 V -> RTC VCC
+Arduino GND   -> RTC GND
+Arduino A4    -> RTC SDA
+Arduino A5    -> RTC SCL
+
+Bei einem RTC-Breakout prüfen, ob I2C-Pull-ups und eine Ladeschaltung vorhanden
+sind. Eine nicht wiederaufladbare CR2032 darf nicht geladen werden.
+
+Sonstiges
+---------
+- Arduino A0 bleibt unbeschaltet und dient als Zufallsquelle.
+- Datenrichtung der LEDs beachten: D8 wird mit DIN, nicht DOUT, verbunden.
+- Versorgung vor dem Einbau unter Last prüfen.

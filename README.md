@@ -48,13 +48,27 @@ Stromeinspeisung dafür ausgelegt sind.
 - DS3231 RTC (SDA: A4, SCL: A5)
 - 110 NeoPixel-LEDs (Datenleitung: Pin 8)
 - Taster gegen GND (Pin 2 mit internem Pull-up)
+- geregeltes 5-V-Netzteil mit mindestens 3 A bei der voreingestellten Helligkeit
+- 330–470-Ω-Widerstand in der Datenleitung
+- 1.000-µF-Pufferkondensator an der LED-Einspeisung
 
 Analogpin A0 bleibt unbeschaltet und dient als Zufallsquelle für die
 Animationsreihenfolge.
 
-## Offen
+Der vollständige, sicherheitsrelevante Verdrahtungsvorschlag steht im
+[`Anschlussplan.txt`](Anschlussplan.txt). Insbesondere werden die LEDs direkt
+vom Netzteil und nicht über den Arduino versorgt. Alle Komponenten benötigen
+eine gemeinsame Masse.
 
-- CAD für LED-Platte fertigstellen
-- Halterung für RTC in die Deckplatte integrieren
-- Anschlussplan um RTC erweitern
-- Frontplatte individualisierbar machen
+## Todo
+
+- [ ] Geregeltes 5-V-/3-A-Netzteil auswählen und unter Last prüfen
+- [ ] 2,5–3-A-Sicherung in den LED-Versorgungszweig integrieren
+- [ ] 1.000-µF-Kondensator nahe der ersten LED montieren
+- [ ] 330–470-Ω-Widerstand nahe DIN der ersten LED montieren
+- [ ] Zweite 5-V-/GND-Einspeisung in der Mitte oder am Ende ergänzen
+- [ ] Ausreichenden Leitungsquerschnitt, feste Klemmen und Zugentlastung vorsehen
+- [ ] RTC-Modul auf Pull-ups, Ladeschaltung und passenden Batterietyp prüfen
+- [ ] CAD für LED-Platte fertigstellen
+- [ ] Halterung für RTC in die Deckplatte integrieren
+- [ ] Frontplatte individualisierbar machen
