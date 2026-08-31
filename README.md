@@ -30,9 +30,11 @@ Betrieb wieder auf.
 Der Taster an Pin 2 wechselt zwischen Weiß, Rot, Grün und Blau. Die Auswahl
 wird im EEPROM gespeichert.
 
-Die globale LED-Helligkeit ist in `Config.h` standardmäßig auf 64 von 255
-begrenzt. Sie sollte nur erhöht werden, wenn Netzteil, Leitungsquerschnitt und
-Stromeinspeisung dafür ausgelegt sind.
+Die globale LED-Helligkeit ist in `Config.h` auf 255 eingestellt. Die frühere
+Reverse-Shuffle-Animation wurde entfernt, damit keine Animation alle 110 LEDs
+gleichzeitig einschaltet. Netzteil, Leitungsquerschnitt und Stromeinspeisung
+müssen trotzdem für die maximale Helligkeit der sichtbaren Wörter ausgelegt
+sein.
 
 ## Projektstruktur
 

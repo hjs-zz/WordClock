@@ -23,8 +23,7 @@ class LedDisplay {
     HORIZONTAL,
     SNAKE,
     WRITER,
-    SHUFFLE_ON,
-    SHUFFLE_OFF
+    SHUFFLE
   };
 
   Adafruit_NeoPixel pixels_;
@@ -48,7 +47,7 @@ class LedDisplay {
   void renderTarget();
   void copyTarget(const bool target[]);
   void beginPathAnimation(Animation animation);
-  void beginShuffle(Animation animation);
+  void beginShuffle();
   void updateRunningText(unsigned long now);
   void updateHorizontal(unsigned long now);
   void updatePathAnimation(unsigned long now, bool useSnakePath);

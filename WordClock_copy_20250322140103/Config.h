@@ -8,8 +8,9 @@ constexpr uint8_t LED_PIN = 8;
 constexpr uint8_t RANDOM_SEED_PIN = A0;
 constexpr uint16_t LED_COUNT = 110;
 
-// 64/255 keeps current and heat substantially below full NeoPixel brightness.
-constexpr uint8_t LED_BRIGHTNESS = 64;
+// Full brightness is safe with the current transitions because no animation
+// switches on the complete 110-pixel matrix at once.
+constexpr uint8_t LED_BRIGHTNESS = 255;
 constexpr uint8_t COLOR_COUNT = 4;
 constexpr uint8_t COLOR_EEPROM_ADDRESS = 0;
 

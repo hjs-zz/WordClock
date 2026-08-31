@@ -93,16 +93,14 @@ void LedDisplay::beginPathAnimation(Animation animation) {
   clearAndShow();
 }
 
-void LedDisplay::beginShuffle(Animation animation) {
-  animation_ = animation;
+void LedDisplay::beginShuffle() {
+  animation_ = Animation::SHUFFLE;
   candidateCount_ = 0;
   candidateIndex_ = 0;
-  const bool startOn = animation == Animation::SHUFFLE_OFF;
-  const uint32_t color = activeColor();
 
   for (uint8_t led = 0; led < Config::LED_COUNT; ++led) {
-    pixels_.setPixelColor(led, startOn ? color : 0);
-    if (target_[led] != startOn) {
+    pixels_.setPixelColor(led, 0);
+    if (target_[led]) {
       candidates_[candidateCount_++] = led;
     }
   }
@@ -124,7 +122,7 @@ void LedDisplay::beginShuffle(Animation animation) {
 void LedDisplay::startRandomTransition(const bool target[]) {
   copyTarget(target);
 
-  switch (random(0, 7)) {
+  switch (random(0, 6)) {
     case 0:
       beginPathAnimation(Animation::RUNNING_TEXT);
       break;
@@ -140,11 +138,8 @@ void LedDisplay::startRandomTransition(const bool target[]) {
     case 4:
       beginPathAnimation(Animation::WRITER);
       break;
-    case 5:
-      beginShuffle(Animation::SHUFFLE_ON);
-      break;
     default:
-      beginShuffle(Animation::SHUFFLE_OFF);
+      beginShuffle();
       break;
   }
 }
@@ -243,11 +238,8 @@ void LedDisplay::update(unsigned long now) {
     case Animation::WRITER:
       updatePathAnimation(now, false);
       break;
-    case Animation::SHUFFLE_ON:
+    case Animation::SHUFFLE:
       updateShuffle(now, 100);
-      break;
-    case Animation::SHUFFLE_OFF:
-      updateShuffle(now, 20);
       break;
     case Animation::IDLE:
       break;

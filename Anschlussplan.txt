@@ -3,7 +3,8 @@ WordClock - Anschlussplan
 
 Stromversorgung
 ---------------
-- Geregeltes 5-V-Netzteil mit mindestens 3 A bei LED_BRIGHTNESS = 64 verwenden.
+- Geregeltes 5-V-Netzteil mit mindestens 3 A verwenden. Der aktuelle Sketch
+  nutzt LED_BRIGHTNESS = 255, schaltet aber nie die komplette Matrix zugleich ein.
 - LED-Strom nicht über den Arduino oder einen GPIO-Pin führen.
 - Netzteil-GND, Arduino-GND, LED-GND und RTC-GND miteinander verbinden.
 - 5 V und GND sternförmig am Anfang sowie in der Mitte oder am Ende der
